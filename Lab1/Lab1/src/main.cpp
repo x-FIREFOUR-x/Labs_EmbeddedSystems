@@ -13,7 +13,8 @@
 int checkUp = 1; 
 int checkDown = 1;
 int angle = 0;
-
+int stepAngle = 90;
+int timeDelay = 100;
 
     // Функція зміни значення порту Е, порт виводу керуючого впливу на двигун в залежності від кута
 void stepper() 
@@ -57,26 +58,26 @@ int main(void)
         if (!STEPUPAUTO) 
         {
             PORTE = 0x0C;
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
             PORTE = 0x06;           // 0x06 = 0b00000110  (PE1 і PE2 = 1)
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
             PORTE = 0x03;
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
             PORTE = 0x09;
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
         }
         
             // Якщо натиснута кнопка STEPDOWNAUTO (PC1) двигун обертається проти годинникової стрілки
         if (!STEPDOWNAUTO) 
         {
             PORTE = 0x03;
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
             PORTE = 0x06;
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
             PORTE = 0x0C;
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
             PORTE = 0x09;
-            _delay_ms(1000);
+            _delay_ms(timeDelay);
         }
         
             // Виконати крок за годинниковою стрілкою, якщо натиснута кнопка STEPUP (PC2), 
@@ -87,7 +88,7 @@ int main(void)
             {
                 angle = 0;
             }
-            angle += 90;
+            angle += stepAngle;
             checkUp = 0;
         }
         
@@ -105,7 +106,7 @@ int main(void)
             {
                 angle = 0;
             }
-            angle -= 90;
+            angle -= stepAngle;
             checkDown = 0;
         }
         
