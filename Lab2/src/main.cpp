@@ -4,20 +4,22 @@
 #include <avr/sleep.h>
 #include <util/delay.h>
 
+
 #define F_CPU 16000000L
+
 
 int main(void) // 0
 {
-    // 1: Init port B
+    // Init port B
     DDRB = 0b00100011;      //встановлення типу виводів порта B, 1 - порт як вихід, 0 - порт як вхід 
     PORTB = 0b00000000;     //встановлення значення виводів порта B
 
-    // 2: Init 16–bit timer 1 values
+    // Init 16–bit timer 1 values
     OCR1A = 20;
     ICR1 = 40;
     int delay = 1; // змінна delay, яка використовується при зміні // шпаруватості
 
-    //  Init Phase and frequency correct PWM
+    // Init Phase and frequency correct PWM
     TCCR1B = _BV(WGM13);
     TCCR1A = 0;
     TCCR1A |= _BV(COM1A0);
