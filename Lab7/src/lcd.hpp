@@ -289,7 +289,7 @@ void Lcd8_Write_Char(char a)
     _delay_ms(1);
 }
 
-// Функція виведення рядка на LСD
+    // Функція виведення рядка на LСD
 void Lcd8_Write_String(char *a)
 {
     int i;
@@ -297,13 +297,13 @@ void Lcd8_Write_String(char *a)
         Lcd8_Write_Char(a[i]);
 }
 
-// Функція, що зсуває текст LСD праворуч
+    // Функція, що зсуває текст LСD праворуч
 void Lcd8_Shift_Right()
 {
     Lcd8_Cmd(0x1C);
 }
 
-// Функція, що зсуває текст LСD ліворуч
+    // Функція, що зсуває текст LСD ліворуч
 void Lcd8_Shift_Left()
 {
     Lcd8_Cmd(0x18);
